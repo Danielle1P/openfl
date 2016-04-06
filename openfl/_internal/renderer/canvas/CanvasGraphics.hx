@@ -486,6 +486,14 @@ class CanvasGraphics {
 	private static function playCommands (commands:DrawCommandBuffer, stroke:Bool = false):Void {
 		
 		#if (js && html5)
+		
+		if ( graphics.__bounds == null )
+		{
+			trace( "Cannot playCommands; bounds were null." );
+			// EARLY RETURN -- necessary data is null and will cause an exception
+			return;
+		}
+		
 		bounds = graphics.__bounds;
 		
 		var offsetX = bounds.x;
